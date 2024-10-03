@@ -1,0 +1,84 @@
+###
+# dynamic config for traefik
+###
+
+tcp:
+  routers:
+    redis:
+      entryPoints:
+        - redis
+      service: redis
+      rule: "HostSNI(`*`)"
+    postgres:
+      entryPoints:
+        - postgres
+      service: postgres
+      rule: "HostSNI(`*`)"
+    minio:
+      entryPoints:
+        - minio
+      service: minio
+      rule: "HostSNI(`*`)"
+  services:
+    redis:
+      loadBalancer:
+        servers:
+          - address: redis-stack:6379
+    postgres:
+      loadBalancer:
+        servers:
+          - address: postgres:5432
+    minio:
+      loadBalancer:
+        servers:
+          - address: minio:9000
+
+http:
+  routers:
+    whoami:
+      rule: "Host(`whoami.perpetis.localhost`)"
+      service: whoami
+      entryPoints:
+        - web
+    redisinsight:
+      rule: "Host(`redisinsight.perpetis.localhost`)"
+      service: redisinsight
+      entryPoints:
+        - web
+    srh:
+      rule: "Host(`srh.perpetis.localhost`)"
+      service: srh
+      entryPoints:
+        - web
+    pgadmin4:
+      rule: "Host(`pgadmin4.perpetis.localhost`)"
+      service: pgadmin4
+      entryPoints:
+        - web
+    minio:
+      rule: "Host(`minio.perpetis.localhost`)"
+      service: minio
+      entryPoints:
+        - web
+
+  services:
+    whoami:
+      loadBalancer:
+        servers:
+          - url: "http://whoami:80"
+    redisinsight:
+      loadBalancer:
+        servers:
+          - url: "http://redis:8001"
+    srh:
+      loadBalancer:
+        servers:
+          - url: "http://srh:8080"
+    pgadmin4:
+      loadBalancer:
+        servers:
+          - url: "http://pgadmin4:80"
+    minio:
+      loadBalancer:
+        servers:
+          - url: "http://minio:9000"

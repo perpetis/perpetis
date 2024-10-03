@@ -1,0 +1,9 @@
+#
+compose*.yml
+Dockerfile*
+
+Makefile
+
+#
+dynamic.yml
+traefik.yml
