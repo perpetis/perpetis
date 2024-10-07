@@ -15,7 +15,7 @@ image: ## Build image
 	@echo "Building image..."
 	@docker buildx bake
 
-up: ## Start containers
+up: create-net ## Start containers
 	@echo "Starting containers..."
 	@docker compose up -d
 
@@ -40,10 +40,14 @@ reset: down ## Prune and remove data volumes
 	@docker volume prune -f
 	@docker volume rm perpetis_minio-data perpetis_postgres-data perpetis_redis-data
 
+create-net: ## Create network
+	@echo "Creating network..."
+	@docker network create forbidden || true
+
 visit: ## Launch browser
 	@echo "Visiting..."
 	@./chrome.sh
 
-.PHONY: build image up down ps info update reset visit
+.PHONY: build image up down ps info update reset create-net visit
 ##
 
