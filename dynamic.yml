@@ -45,6 +45,11 @@ http:
       service: redisinsight
       entryPoints:
         - web
+    redis-commander:
+      rule: "Host(`redis-commander.perpetis.localhost`)"
+      service: redis-commander
+      entryPoints:
+        - web
     srh:
       rule: "Host(`srh.perpetis.localhost`)"
       service: srh
@@ -70,6 +75,10 @@ http:
       loadBalancer:
         servers:
           - url: "http://redis:8001"
+    redis-commander:
+      loadBalancer:
+        servers:
+          - url: "http://redis-commander:8081"
     srh:
       loadBalancer:
         servers:

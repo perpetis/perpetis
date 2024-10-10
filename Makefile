@@ -42,7 +42,8 @@ reset: down ## Prune and remove data volumes
 
 create-net: ## Create network
 	@echo "Creating network..."
-	@docker network create forbidden || true
+	@docker network inspect forbidden >/dev/null 2>&1 \
+		|| docker network create forbidden
 
 visit: ## Launch browser
 	@echo "Visiting..."

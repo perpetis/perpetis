@@ -21,6 +21,7 @@ URLS=(
 #
 "http://whoami.${DOMAIN}:${PORT}/"
 "http://redisinsight.${DOMAIN}:${PORT}/"
+"http://redis-commander.${DOMAIN}:${PORT}/"
 "http://pgadmin4.${DOMAIN}:${PORT}/"
 "http://minio.${DOMAIN}:${PORT}/"
 )

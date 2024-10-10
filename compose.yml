@@ -43,6 +43,15 @@ services:
       - redis-data:/data
     restart: always
 
+  # https://hub.docker.com/r/rediscommander/redis-commander
+  redis-commander:
+    platform: linux/amd64
+    networks:
+      - forbidden
+    image: rediscommander/redis-commander
+    environment:
+      - REDIS_HOSTS=local:redis:6379
+
   # https://github.com/vercel/storage/issues/281
   # https://github.com/hiett/serverless-redis-http
   srh:
@@ -107,7 +116,6 @@ services:
       - forbidden
     # ports:
     #   - "80:80"
-    restart: always
 
   # https://hub.docker.com/r/minio/minio
   # last Apache 2.0 license

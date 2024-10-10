@@ -13,6 +13,7 @@ providers:
   docker:
     exposedByDefault: false
     network: forbidden
+    constraints: Label(`custom.traefik.group`,`perpetis`)
   file:
     filename: /etc/traefik/dynamic.yml
 
