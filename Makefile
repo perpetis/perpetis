@@ -13,7 +13,7 @@ build: image ## Build image
 
 image: ## Build image
 	@echo "Building image..."
-	@docker buildx bake
+	@./build.sh
 
 up: create-net ## Start containers
 	@echo "Starting containers..."
