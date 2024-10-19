@@ -11,13 +11,10 @@ function source_env() {
 source_env
 
 export WEB_PORT="${WEB_PORT:-80}"
-export ADMIN_PORT="${ADMIN_PORT:-8080}"
 
 ##
 DOMAIN="openaide.localhost"
 URLS=(
-# dashboard
-"http://traefik.${DOMAIN}:${ADMIN_PORT}/"
 #
 "http://redisinsight.${DOMAIN}:${WEB_PORT}/"
 "http://redis-commander.${DOMAIN}:${WEB_PORT}/"
