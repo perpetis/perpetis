@@ -10,23 +10,22 @@ function source_env() {
 ##
 source_env
 
-PORT="${TRAEFIK_WEB_PORT:-80}"
-ADMIN_PORT="${TRAEFIK_ADMIN_PORT:-8080}"
+export WEB_PORT="${WEB_PORT:-80}"
+export ADMIN_PORT="${ADMIN_PORT:-8080}"
 
 ##
-DOMAIN="perpetis.localhost"
+DOMAIN="openaide.localhost"
 URLS=(
 # dashboard
 "http://traefik.${DOMAIN}:${ADMIN_PORT}/"
 #
-"http://whoami.${DOMAIN}:${PORT}/"
-"http://redisinsight.${DOMAIN}:${PORT}/"
-"http://redis-commander.${DOMAIN}:${PORT}/"
-"http://pgadmin4.${DOMAIN}:${PORT}/"
-"http://minio.${DOMAIN}:${PORT}/"
+"http://redisinsight.${DOMAIN}:${WEB_PORT}/"
+"http://redis-commander.${DOMAIN}:${WEB_PORT}/"
+"http://pgadmin4.${DOMAIN}:${WEB_PORT}/"
+"http://minio.${DOMAIN}:${WEB_PORT}/"
 )
 
-DATA_DIR="perpetis"
+DATA_DIR="openaide"
 
 ##
 function chrome() {
