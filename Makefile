@@ -8,8 +8,10 @@
 help: Makefile
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 
+PROFILE ?= ""
+
 #
-build: image ## Build image
+build: image ## Same as image
 
 image: ## Build image
 	@echo "Building image..."
@@ -17,11 +19,11 @@ image: ## Build image
 
 up: create-net ## Start containers
 	@echo "Starting containers..."
-	@docker compose up -d
+	@docker compose --profile $(PROFILE) up -d
 
 down: ## Stop containers
 	@echo "Stopping containers..."
-	@docker compose down
+	@docker compose --profile $(PROFILE) down
 
 ps: ## Show status of services
 	@echo "Status of services..."

@@ -24,4 +24,7 @@ create_db movies admin
 create_db music admin
 create_db pictures admin
 
+#
+create_db litellm admin
+
 ##
